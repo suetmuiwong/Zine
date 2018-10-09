@@ -10,13 +10,13 @@ import {
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'; //引入图标
 
-export default class ArticleList extends Component {
+export default class BrochureList extends Component {
     // 构造
     constructor(props) {
         super(props);
     }
     static navigationOptions = {
-        tabBarLabel: '文章'
+        tabBarLabel: '小册子'
     };
     refreshing() {
         // let timer = setTimeout(() => {
@@ -35,9 +35,9 @@ export default class ArticleList extends Component {
         var txt = '标题' + item.index ;
         return (
             <View style={styles.listContent}>
-                <Image  style={styles.listContentImg} source={require("../../img/01.png")} />
+                <Image  style={styles.listContentImg} source={require("../../img/02.png")} />
                 <Text>{txt}</Text>
-                <Text >2017年7月10日</Text>
+                <Text >55分钟前</Text>
             </View>
         );
 
@@ -62,13 +62,17 @@ export default class ArticleList extends Component {
      * 返回到登陆界面
      */
     backToLogin = () => {
-        const { goBack } = this.props.navigation; //获取navigation的goBack方法
-        goBack();  //返回上一界面
+        // const { goBack } = this.props.navigation; //获取navigation的goBack方法
+        // goBack();  //返回上一界面
+
+        const { navigate } = this.props.navigation;  //获取navigation的navigate方法
+        navigate('Login');  //跳转到注册过的Home界面
+        
     }
 
     render() {
         var data = [];
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 3; i++) {
             data.push({ key: i, title: i + '' });
         }
 
@@ -78,18 +82,15 @@ export default class ArticleList extends Component {
 
                 <View style={styles.headerTag}>
                     <View style={styles.headerTagLeft}>
-                        <Text>文章</Text>
-                        <Text >/6</Text>
+                        <Text>小册子</Text>
+                        <Text >/2</Text>
                     </View>
                     <View style={styles.headerTagRight}>
                       <View style={styles.fontStyle}>
-                         <FontAwesome  name='tag' size={15} />
-                      </View>
-                      <View style={styles.fontStyle}>
-                         <FontAwesome name='search' size={15} />
-                      </View>
-                      <View style={styles.fontStyle}>
                           <FontAwesome name='sort-amount-desc' size={15} />
+                      </View>
+                      <View style={styles.fontStyle}>
+                          <FontAwesome name='plus' size={15} />
                       </View>
                     </View>
                 </View>
@@ -160,8 +161,8 @@ const styles = StyleSheet.create({
 
     },
     fontStyle:{
-      marginLeft:10,
-      marginRight:10,
+        marginLeft:10,
+        marginRight:10,
     },
     flatListStyle:{
       margin:15,
